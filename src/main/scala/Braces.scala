@@ -34,22 +34,3 @@ object Braces {
     }
   }
 }
-
-object Main {
-
-  import scala.io.StdIn
-
-  def main(args: Array[String]): Unit = {
-    val line = StdIn.readLine()
-    if (line.isEmpty) {
-      println(0)
-      return
-    }
-    val result = Braces.findError(line)
-    if (result == -1) {
-      println("Success")
-    } else {
-      println(result)
-    }
-  }
-}

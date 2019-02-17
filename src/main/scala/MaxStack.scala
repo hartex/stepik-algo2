@@ -1,5 +1,3 @@
-package example
-
 class MaxStack {
 
   import scala.collection.mutable
@@ -27,24 +25,6 @@ class MaxStack {
       0
     } else {
       inner.top
-    }
-  }
-}
-
-object Main {
-
-  import scala.io.StdIn
-
-  def main(args: Array[String]): Unit = {
-    val stack = new MaxStack()
-
-    for (_ <- 0 until StdIn.readInt) {
-      val line = StdIn.readLine
-      line match {
-        case "pop" => stack.pop()
-        case "max" => println(stack.max)
-        case s if s.startsWith("push") => stack.push(s.stripPrefix("push ").toInt)
-      }
     }
   }
 }
