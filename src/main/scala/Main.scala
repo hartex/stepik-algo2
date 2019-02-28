@@ -43,9 +43,9 @@ object Main {
   }
 
   def minHeap ():Unit = {
-    val _ = StdIn.readLine()
-    val minHeap = StdIn.readLine().split(" ").map(_.toInt)
-    println(MinHeap.countPermutations(minHeap))
+    // val _ = StdIn.readLine()
+    // val minHeap = StdIn.readLine().split(" ").map(_.toInt)
+    println(MinHeap(Seq(7, 6, 5, 4, 3, 2)).countPermutations())
   }
   def main(args: Array[String]): Unit = {
     // braces()

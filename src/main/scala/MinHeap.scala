@@ -1,27 +1,32 @@
 import scala.collection.mutable
 
-class MinHeap(heap: Seq[Int]) {
+case class MinHeap(heap: Seq[Int]) {
   private val indexes = mutable.ArrayBuffer[(Int, Int)]()
 
-  def liftUp(heap: Seq[Int], index: Int): Seq[Int] = {
-    if (index - 1 < 0) return heap
-
+  def canSwap(heap: Seq[Int], index: Int): Boolean = {
     val parentIndex = (index - 1) / 2
-    liftUp(
-      if (heap(parentIndex) > heap(index)) {
-        indexes += ((parentIndex, index))
-        heap
-          .updated(parentIndex, heap(index))
-          .updated(index, heap(parentIndex))
-      } else {
-        heap
-      }, index - 1)
+    heap(parentIndex) > heap(index)
   }
 
-  def countPermutations(heap: Seq[Int]): Seq[(Int, Int)] = {
-    for (index <- (heap.length - 1) until 0 by 1) {
-      liftUp(heap, index)
+  def swap(heap: Seq[Int], index: Int): Seq[Int] = {
+    val parentIndex = (index - 1) / 2
+    indexes += ((parentIndex, index))
+    heap
+      .updated(parentIndex, heap(index))
+      .updated(index, heap(parentIndex))
+  }
+
+  def countPermutations(): Seq[(Int, Int)] = {
+    def count(h: Seq[Int], index: Int): Seq[Int] = {
+      if (index < 0) return h
+      var a = h
+      while (canSwap(a, index)) {
+        a = swap(a, index)
+      }
+      count(a, index - 1)
     }
+
+    count(heap, heap.length - 1)
     indexes
   }
 }
