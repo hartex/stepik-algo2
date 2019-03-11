@@ -42,16 +42,42 @@ object Main {
     println(MaxTreeHeight.find(tree))
   }
 
-  def minHeap ():Unit = {
+  def minHeap(): Unit = {
     // val _ = StdIn.readLine()
     // val minHeap = StdIn.readLine().split(" ").map(_.toInt)
     println(MinHeap(Seq(7, 6, 5, 4, 3, 2)).countPermutations())
   }
+
+  def phoneBook(): Unit = {
+    import scala.collection.mutable
+    val tasks = mutable.ListBuffer[String]()
+    val numberOfCommands = StdIn.readLine().toInt
+    for (_ <- 0 until numberOfCommands) {
+      tasks += StdIn.readLine()
+    }
+
+    PhoneBook.executeTasks(tasks).foreach(println)
+  }
+
+  def hashTable(): Unit = {
+    import scala.collection.mutable
+    val m = StdIn.readLine().toInt
+    val numberOfCommands = StdIn.readLine().toInt
+    val tasks = mutable.ListBuffer[String]()
+    for (_ <- 0 until numberOfCommands) {
+      tasks += StdIn.readLine()
+    }
+
+    ChainedHashTable.executeTasks(m, tasks).foreach(println)
+  }
+
   def main(args: Array[String]): Unit = {
     // braces()
     // frameQueue()
     // maxStack()
     // maxTreeHeight()
-    minHeap()
+    // minHeap()
+    // phoneBook()
+    hashTable()
   }
 }
