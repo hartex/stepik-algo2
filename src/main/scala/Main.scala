@@ -71,6 +71,23 @@ object Main {
     ChainedHashTable.executeTasks(m, tasks).foreach(println)
   }
 
+  def walkTrees(): Unit = {
+    import WalkTree._
+
+    import scala.collection.mutable
+
+    val numberOfNodes = StdIn.readLine().toInt
+    val nodes = mutable.ListBuffer[Node]()
+    for (index <- 0 until numberOfNodes) {
+      val node = StdIn.readLine().split(" ").map(_.toInt)
+      nodes += Node(node(0), index, node(1), node(2))
+    }
+
+    println(inOrder(nodes.toList).map(_.key).mkString(" "))
+    println(preOrder(nodes.toList).map(_.key).mkString(" "))
+    println(postOrder(nodes.toList).map(_.key).mkString(" "))
+  }
+
   def main(args: Array[String]): Unit = {
     // braces()
     // frameQueue()
@@ -78,6 +95,7 @@ object Main {
     // maxTreeHeight()
     // minHeap()
     // phoneBook()
-    hashTable()
+    // hashTable()
+    walkTrees()
   }
 }
